@@ -1,0 +1,7 @@
+package cn.et.lesson02;
+
+public class MyView {
+	public static void main(String[] args) {
+		
+	}
+}

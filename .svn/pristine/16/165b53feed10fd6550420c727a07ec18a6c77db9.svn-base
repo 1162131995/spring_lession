@@ -1,0 +1,38 @@
+package cn.et.lesson04.jdbc;
+
+
+
+import java.sql.Connection;
+import java.sql.SQLException;
+
+import javax.sql.DataSource;
+
+import org.springframework.context.ConfigurableApplicationContext;
+import org.springframework.context.support.GenericXmlApplicationContext;
+
+
+public class Test {
+	static DataSource dataSource;
+	static Connection connection;
+	static{
+		ConfigurableApplicationContext context = new GenericXmlApplicationContext("classpath:/cn/et/lesson04/jdbc/spring.xml");
+		dataSource = (DataSource)context.getBean("dataSource");
+	}
+	
+	public static void main(String[] args) throws SQLException {
+		try {
+			//前置通知
+			connection = dataSource.getConnection();
+			connection.setAutoCommit(false);
+			
+			//后置通知
+			connection.commit();
+		} catch (Exception e) {
+			// TODO: handle exception
+			connection.rollback();
+		}finally {
+			connection.close();
+		}
+		
+	}
+}

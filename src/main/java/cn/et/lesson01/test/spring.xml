@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd">
+        
+    <!-- 获取：ApplicationContext context = new ClassPathXmlApplicationContext("spring.xml");
+    	context.getBean("变量名");
+    	spring 中bean变量默认都是单实例（2次getBean()获取的都是同一个变量），使用scope属性设置
+    		singleton：单例（默认）
+    		prototype：多例
+    		区别：单例在xml容器初始化时实例化，多例在调用getBean()方法时实例化
+     -->
+    <!-- 属性注入 
+    	property:value适合基本数据类型，ref表示对象的引用
+    -->
+	<bean id="a" class="cn.et.lession01.test.A" scope="prototype">
+		<property name="name" value="zs"></property>
+	</bean>
+	
+	<!-- 如果没有变量名,cn.et.lession01.test.A#编号会成为变量名 -->
+	<bean class="cn.et.lession01.test.A"></bean>
+	<bean class="cn.et.lession01.test.A"></bean>
+	
+	<bean id="b" class="cn.et.lession01.test.B" >
+		<property name="a" ref="a"><!-- <ref bean="a"/> --></property>
+	</bean>
+	
+	<!-- 自动装配：
+			autowire:
+				byType:根据类型自动装配，只能在xml中只存在一个该类变量的情况下使用
+				byName:根据变量名自动装配
+	 -->
+	<bean id="b1" class="cn.et.lession01.test.B" autowire="byType"></bean>
+	
+	<!-- 构造器注入 
+		constructor-arg标签:调用构造器
+			index:根据参数的位置设值
+			type:根据参数的类型设值
+			name:根据参数的变量名设值
+	-->
+	<bean id="c" class="cn.et.lession01.test.C">
+		<constructor-arg index="0" value="14"></constructor-arg>
+		<constructor-arg index="1" value="ls"></constructor-arg>
+		<constructor-arg name="a" ref="a"></constructor-arg>
+	</bean>
+	
+</beans>

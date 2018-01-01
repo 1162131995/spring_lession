@@ -1,0 +1,8 @@
+package cn.et.lesson02.dao;
+
+import org.springframework.stereotype.Repository;
+
+@Repository
+public class MyDao {
+
+}

@@ -1,0 +1,29 @@
+package cn.et.lesson01.test;
+
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
+
+public class Test {
+	public static void main(String[] args) {
+		ApplicationContext context = new ClassPathXmlApplicationContext("cn/et/lesson01/test/spring.xml");
+		A a = (A)context.getBean("a");
+		System.out.println(a);
+		
+//		//可以通过类来获取实例，如果xml文件中有多个该类的bean会抛出异常
+//		A a1 = context.getBean(A.class);
+//		System.out.println(a1);
+//		
+		//获取所有bean的id
+		String [] beans = context.getBeanDefinitionNames();
+		for(String bean:beans){
+			System.out.println(bean);
+		}
+		
+		C c = (C)context.getBean("c");
+		System.out.println(c.getAge());
+		System.out.println(c.getName());
+		System.out.println(c.getA());
+		
+		
+	}
+}

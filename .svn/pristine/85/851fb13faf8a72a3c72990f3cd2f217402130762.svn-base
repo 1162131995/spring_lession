@@ -1,0 +1,6 @@
+package cn.et.lesson04.jdbc.dao;
+
+public interface MyMoneyDao {
+	public void aMinus(int money);
+	public void bAdd(int money);
+}

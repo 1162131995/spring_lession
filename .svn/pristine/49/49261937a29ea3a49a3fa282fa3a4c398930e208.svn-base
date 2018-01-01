@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd">
+        
+    <!-- 获取：ApplicationContext context = new ClassPathXmlApplicationContext("spring.xml");
+    	context.getBean("变量名");
+     -->
+	<bean id="a" class="cn.et.lession01.test.A"></bean>
+</beans>
